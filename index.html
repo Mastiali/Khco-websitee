@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KHCO Health</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f7f9fc;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    header {
+      background: #0f2f57;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 20px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-area img {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: white;
+      padding: 4px;
+    }
+
+    .logo-text h1 {
+      font-size: 22px;
+      line-height: 1.1;
+    }
+
+    .logo-text p {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #f9c74f;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #f9c74f;
+      color: #0f2f57;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #ffd86e;
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      min-height: 88vh;
+      background:
+        linear-gradient(rgba(15, 47, 87, 0.72), rgba(15, 47, 87, 0.72)),
+        url('Gallery2.png');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      padding: 70px 0;
+    }
+
+    .hero-content h2 {
+      font-size: 48px;
+      margin-bottom: 18px;
+      line-height: 1.2;
+    }
+
+    .hero-content p {
+      font-size: 18px;
+      margin-bottom: 28px;
+      color: #f1f5f9;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 18px;
+      color: #0f2f57;
+      font-size: 34px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 45px;
+      color: #4b5563;
+      font-size: 16px;
+    }
+
+    .about-grid,
+    .contact-grid,
+    .membership-grid,
+    .portal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 35px;
+      align-items: start;
+    }
+
+    .about-image img,
+    .contact-image img,
+    .founder-card img {
+      width: 100%;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      object-fit: cover;
+    }
+
+    .about-text h3,
+    .contact-text h3,
+    .membership-text h3,
+    .portal-box h3 {
+      color: #0f2f57;
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    .about-text p,
+    .contact-text p,
+    .membership-text p,
+    .portal-box p {
+      margin-bottom: 14px;
+      color: #374151;
+    }
+
+    .highlight-boxes {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 35px;
+    }
+
+    .highlight-card,
+    .service-card,
+    .team-card,
+    .gallery-card,
+    .info-card,
+    .portal-box,
+    .member-profile,
+    .founder-card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+      transition: 0.3s;
+    }
+
+    .highlight-card:hover,
+    .service-card:hover,
+    .team-card:hover,
+    .gallery-card:hover,
+    .info-card:hover,
+    .founder-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .highlight-card h4,
+    .service-card h4,
+    .team-card h4,
+    .info-card h4,
+    .founder-card h4 {
+      color: #0f2f57;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .services-grid,
+    .team-grid,
+    .gallery-grid,
+    .info-grid,
+    .founders-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .team-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .founders-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .info-grid {
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 25px;
+    }
+
+    .service-card p,
+    .team-card p,
+    .info-card p,
+    .founder-card p {
+      color: #4b5563;
+      font-size: 15px;
+    }
+
+    .team-card,
+    .founder-card {
+      text-align: center;
+    }
+
+    .team-card h4,
+    .founder-card h4 {
+      margin-bottom: 6px;
+    }
+
+    .team-card .role,
+    .founder-card .role {
+      color: #b47b00;
+      font-weight: bold;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .membership,
+    .portal {
+      background: #eef4fb;
+    }
+
+    .membership-card {
+      background: white;
+      border-left: 6px solid #f9c74f;
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .membership-list {
+      margin-top: 18px;
+      padding-left: 20px;
+      color: #374151;
+    }
+
+    .membership-list li {
+      margin-bottom: 10px;
+    }
+
+    .gallery-card {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+
+    .gallery-card .caption {
+      padding: 16px;
+      font-weight: 600;
+      color: #0f2f57;
+    }
+
+    .portal-box {
+      height: 100%;
+    }
+
+    .login-form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .login-form label {
+      font-weight: 700;
+      color: #0f2f57;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .login-form input {
+      width: 100%;
+      padding: 14px 14px;
+      border: 1px solid #cfd8e3;
+      border-radius: 10px;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .login-form input:focus {
+      border-color: #0f2f57;
+      box-shadow: 0 0 0 3px rgba(15, 47, 87, 0.12);
+    }
+
+    .helper {
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .status-message {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      display: none;
+      font-weight: 600;
+    }
+
+    .status-error {
+      background: #fee2e2;
+      color: #991b1b;
+      display: block;
+    }
+
+    .status-success {
+      background: #dcfce7;
+      color: #166534;
+      display: block;
+    }
+
+    .member-profile {
+      display: none;
+      border-top: 5px solid #0f2f57;
+    }
+
+    .member-profile.active {
+      display: block;
+    }
+
+    .member-profile h3 {
+      margin-bottom: 16px;
+    }
+
+    .member-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 20px;
+      margin-top: 16px;
+    }
+
+    .member-item {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .member-item span {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+
+    .contact {
+      background: #0f2f57;
+      color: white;
+    }
+
+    .contact .section-title,
+    .contact .section-subtitle,
+    .contact .contact-text h3,
+    .contact .contact-text p,
+    .contact .info-card h4,
+    .contact .info-card p {
+      color: white;
+    }
+
+    .contact .info-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(5px);
+    }
+
+    .founder-card img {
+      height: 290px;
+      object-fit: cover;
+      margin-bottom: 18px;
+    }
+
+    footer {
+      background: #0a203c;
+      color: #dbe4f0;
+      text-align: center;
+      padding: 24px 15px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 992px) {
+      .services-grid,
+      .team-grid,
+      .founders-grid,
+      .highlight-boxes,
+      .gallery-grid,
+      .info-grid,
+      .about-grid,
+      .contact-grid,
+      .membership-grid,
+      .portal-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-content h2 {
+        font-size: 38px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .services-grid,
+      .team-grid,
+      .founders-grid,
+      .highlight-boxes,
+      .gallery-grid,
+      .info-grid,
+      .about-grid,
+      .contact-grid,
+      .membership-grid,
+      .portal-grid,
+      .member-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-content h2 {
+        font-size: 31px;
+      }
+
+      .hero-content p {
+        font-size: 16px;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo-area">
+          <img src="Gallery.png" alt="KHCO Logo">
+          <div class="logo-text">
+            <h1>KHCO Health</h1>
+            <p>Kurdistan Health Care Organization</p>
+          </div>
+        </div>
+
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#team">Council</a>
+          <a href="#founders">Founders</a>
+          <a href="#portal">Member Portal</a>
+          <a href="#membership">Membership</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <h2>Supporting Health, Membership, and Community Care</h2>
+        <p>
+          The Kurdistan Health Care Organization website is a central digital platform designed to support members,
+          share healthcare-related services, and improve communication between the organization and the community.
+        </p>
+        <a href="#portal" class="btn">Member Portal</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About KHCO</h2>
+      <p class="section-subtitle">
+        KHCO works to strengthen community health support through organized membership services, awareness activities,
+        educational programs, and healthcare partnerships.
+      </p>
+
+      <div class="about-grid">
+        <div class="about-image">
+          <img src="Gallery2.png" alt="About KHCO">
+        </div>
+        <div class="about-text">
+          <h3>Our Main Objective</h3>
+          <p>
+            The main objective of the KHCO website is to provide a central digital platform that connects members,
+            delivers healthcare-related services, and improves communication between the organization and the community.
+          </p>
+          <p>
+            Through this platform, KHCO can present its mission, publish activities, highlight services, and provide
+            clear information about member benefits such as digital identification cards, medical insurance support,
+            and course discounts.
+          </p>
+          <p>
+            The website also helps the organization maintain transparency, build trust, and create stronger engagement
+            with the public.
+          </p>
+        </div>
+      </div>
+
+      <div class="highlight-boxes">
+        <div class="highlight-card">
+          <h4>Membership</h4>
+          <p>Digital membership support, identification cards, and validation updates for members.</p>
+        </div>
+        <div class="highlight-card">
+          <h4>Health Services</h4>
+          <p>Information about healthcare benefits, insurance collaboration, and service access.</p>
+        </div>
+        <div class="highlight-card">
+          <h4>Courses</h4>
+          <p>Educational opportunities with discounted access and free certificates for members.</p>
+        </div>
+        <div class="highlight-card">
+          <h4>Communication</h4>
+          <p>Announcements, updates, and public outreach to improve awareness and trust.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-subtitle">
+        KHCO provides practical services that support its members and strengthen health-related community engagement.
+      </p>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <h4>Medical Insurance Support</h4>
+          <p>
+            KHCO provides medical insurance support for members through collaboration with Anwarsheikha Medical City.
+          </p>
+        </div>
+        <div class="service-card">
+          <h4>Course Discounts</h4>
+          <p>
+            Members receive a 38% discount on KHCO courses, and certificates are provided free of charge.
+          </p>
+        </div>
+        <div class="service-card">
+          <h4>Digital Identification</h4>
+          <p>
+            Most members have received their digital identification cards, with hard copy printing planned after final revision.
+          </p>
+        </div>
+        <div class="service-card">
+          <h4>Laboratory Discount</h4>
+          <p>
+            Members receive a 20% discount in Anwarsheikha Lab as part of KHCO medical support benefits.
+          </p>
+        </div>
+        <div class="service-card">
+          <h4>Pharmacy Discount</h4>
+          <p>
+            Members receive a 7% discount in Anwarsheikha Pharmacy in Anwarsheikha Medical City.
+          </p>
+        </div>
+        <div class="service-card">
+          <h4>Community Health Activities</h4>
+          <p>
+            KHCO continues to support health initiatives, awareness efforts, and community-centered programs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="team">
+    <div class="container">
+      <h2 class="section-title">Administrative Council</h2>
+      <p class="section-subtitle">
+        Meet the organizational leadership team responsible for guiding KHCO activities and services.
+      </p>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <h4>Meer Pshtiwan</h4>
+          <span class="role">President</span>
+          <p>Leads the organization and oversees its strategic direction.</p>
+        </div>
+        <div class="team-card">
+          <h4>Nazhoo Mahmood</h4>
+          <span class="role">Vice President</span>
+          <p>Supports executive leadership and organizational planning.</p>
+        </div>
+        <div class="team-card">
+          <h4>Sarmad Aras</h4>
+          <span class="role">General Manager</span>
+          <p>Coordinates management and operational supervision.</p>
+        </div>
+        <div class="team-card">
+          <h4>Shad Jalal</h4>
+          <span class="role">Vice General Manager</span>
+          <p>Assists with organizational administration and implementation.</p>
+        </div>
+        <div class="team-card">
+          <h4>Mstafa Atta</h4>
+          <span class="role">Activity Manager</span>
+          <p>Organizes and supervises activities and outreach programs.</p>
+        </div>
+        <div class="team-card">
+          <h4>Elyan Rafiq</h4>
+          <span class="role">Courses Manager</span>
+          <p>Manages educational programs, workshops, and training events.</p>
+        </div>
+        <div class="team-card">
+          <h4>Sobhab Ali</h4>
+          <span class="role">HR Manager</span>
+          <p>Handles member and internal human resource coordination.</p>
+        </div>
+        <div class="team-card">
+          <h4>Fatma Ali</h4>
+          <span class="role">Communication Manager</span>
+          <p>Responsible for communication, announcements, and public relations.</p>
+        </div>
+        <div class="team-card">
+          <h4>Masti Pshtiwan</h4>
+          <span class="role">Software, Data, and Finance Manager</span>
+          <p>Responsible for managing the organization’s technology, data, and finances to support smooth operations and informed decisions.</p>
+        </div>
+        <div class="team-card">
+          <h4>Kavi Sherzad</h4>
+          <span class="role">Dent Logic</span>
+          <p>Manages dental courses and related activities with support from the organization management.</p>
+        </div>
+        <div class="team-card">
+          <h4>Kardo Obaid</h4>
+          <span class="role">Media Manager</span>
+          <p>Responsible for creating, managing, and sharing media content to promote the organization and connect with the audience.</p>
+        </div>
+        <div class="team-card">
+          <h4>Aya Kawa</h4>
+          <span class="role">Registration Manager</span>
+          <p>Handles member registration, keeps records organized, and ensures registration information stays accurate and updated.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="founders">
+    <div class="container">
+      <h2 class="section-title">Founders</h2>
+      <p class="section-subtitle">
+        The founders section highlights the people who helped establish and shape KHCO.
+      </p>
+      <div class="founders-grid">
+        <div class="founder-card">
+          <img src="mp.png" alt="Meer Pshtiwan">
+          <h4>Meer Pshtiwan</h4>
+          <span class="role">Founder</span>
+          <p>One of the founding members who helped build the organization’s vision and direction.</p>
+        </div>
+        <div class="founder-card">
+          <img src="sa.png" alt="Sarmad Aras">
+          <h4>Sarmad Aras</h4>
+          <span class="role">Founder</span>
+          <p>One of the founding members who helped establish the management and organizational structure of KHCO.</p>
+        </div>
+        <div class="founder-card">
+          <img src="dn.png" alt="Dyari Najmadin">
+          <h4>Dyari Najmadin</h4>
+          <span class="role">Founder</span>
+          <p>One of the founding members who contributed to the growth and early development of KHCO.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="portal" id="portal">
+    <div class="container">
+      <h2 class="section-title">Member Portal</h2>
+      <p class="section-subtitle">
+        Only accepted members from the green-highlighted rows in the membership sheet can log in and view their information.
+      </p>
+
+      <div class="portal-grid">
+        <div class="portal-box">
+          <h3>Login</h3>
+          <p>Use your organizational code, your full user name, and your birthday as password in this format: <strong>DDMMYYYY</strong>.</p>
+
+          <form class="login-form" id="loginForm">
+            <div>
+              <label for="orgCode">Organizational Code</label>
+              <input type="text" id="orgCode" placeholder="Example: 3" autocomplete="username">
+            </div>
+            <div>
+              <label for="userName">User Name</label>
+              <input type="text" id="userName" placeholder="Enter full name">
+            </div>
+            <div>
+              <label for="password">Password</label>
+              <input type="password" id="password" placeholder="DDMMYYYY" autocomplete="current-password">
+              <div class="helper">Example: 1st Jan 2002 = 01012002</div>
+            </div>
+            <button type="submit" class="btn">Login</button>
+          </form>
+
+          <div id="loginStatus" class="status-message"></div>
+        </div>
+
+        <div class="member-profile" id="memberProfile">
+          <h3>Member Information</h3>
+          <p>Welcome to your member portal. Your accepted membership information is shown below.</p>
+          <div class="member-grid" id="memberGrid"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="membership" id="membership">
+    <div class="container">
+      <h2 class="section-title">Membership Information</h2>
+      <p class="section-subtitle">
+        Updated membership benefits and validation information for KHCO members.
+      </p>
+
+      <div class="membership-grid">
+        <div class="membership-text membership-card">
+          <h3>Important Membership Update</h3>
+          <p>
+            Due to the previous temporary suspension of activities for public safety, the presidential office of KHCO decided
+            to extend the membership validation period.
+          </p>
+          <ul class="membership-list">
+            <li>Previous validation date: 01/01/2027</li>
+            <li>New validation date: 01/03/2027</li>
+            <li>99% of members received their digital membership identification card</li>
+            <li>Hard copy cards will be printed after final review and revision</li>
+            <li>Medical Insurance Card (MIC) has been provided to most members</li>
+          </ul>
+        </div>
+
+        <div class="about-image">
+          <img src="Gallery2.png" alt="KHCO Membership">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="container">
+      <h2 class="section-title">Gallery</h2>
+      <p class="section-subtitle">
+        Add your organization photos here. Keep the image files in the same folder as this HTML file.
+      </p>
+
+      <div class="gallery-grid">
+        <div class="gallery-card">
+          <img src="Gallery.png" alt="KHCO Gallery Image">
+          <div class="caption">KHCO Activity Photo</div>
+        </div>
+        <div class="gallery-card">
+          <img src="Gallery2.png" alt="KHCO Gallery Image 2">
+          <div class="caption">KHCO Community Activity</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact Us</h2>
+      <p class="section-subtitle">
+        Get in touch with the Kurdistan Health Care Organization for information, membership support, and organizational communication.
+      </p>
+
+      <div class="contact-grid">
+        <div class="contact-text">
+          <h3>KHCO Registration Office</h3>
+          <p>
+            Our registration and communication office is available to help members with updates, corrections,
+            and general inquiries about services and activities.
+          </p>
+          <p>
+            If there is any issue with your membership details before hard card printing, please inform the registration office
+            so the record can be revised before final approval.
+          </p>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h4>Email</h4>
+              <p>khca687@gmail.com</p>
+            </div>
+            <div class="info-card">
+              <h4>Phone</h4>
+              <p>009647710893838</p>
+            </div>
+            <div class="info-card">
+              <h4>Location</h4>
+              <p>Erbil / Kurdistan Region</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-image">
+          <img src="Gallery2.png" alt="Contact KHCO">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 KHCO Health | Kurdistan Health Care Organization. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const acceptedMembers = [{"code": "1", "username": "Karo kamil fatah faraj", "usernameKey": "karo kamil fatah faraj", "password": "24032005", "fullName": "Karo kamil fatah faraj", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "24/03/2005", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Sulaimani/ Kurdsat", "bloodGroup": "O+", "phone": "07748180954", "email": "Karokamil243@gmail.com", "nationalId": "200580369569", "picture": "https://drive.google.com/open?id=1yCh1Zck4wcxZ_BZP8dB_xpr2auwkZlOC", "status": "Accepted"}, {"code": "3", "username": "Rabun Nury Mustafa", "usernameKey": "rabun nury mustafa", "password": "09012007", "fullName": "Rabun Nury Mustafa", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "09/01/2007", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Ranya", "bloodGroup": "A+", "phone": "07705975252", "email": "rabunnwry@gmail.com", "nationalId": "I Don’t know this part Why this part required", "picture": "https://drive.google.com/open?id=1k0wgwf-K9A-Tti8yVk9jCfNHWGPwYXt-", "status": "Accepted"}, {"code": "4", "username": "Danya Dler Fatah", "usernameKey": "danya dler fatah", "password": "25012006", "fullName": "Danya Dler Fatah", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "25/01/2006", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Chwarbax", "bloodGroup": "A+", "phone": "07700268457", "email": "danyadler47@gmail.com", "nationalId": "200695006523", "picture": "https://drive.google.com/open?id=1VQszAUloO5aQxZ4We37baJ2HfpnGXXWU", "status": "Accepted"}, {"code": "5", "username": "Arya Mohammed Ali", "usernameKey": "arya mohammed ali", "password": "01052006", "fullName": "Arya Mohammed Ali", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "01/05/2006", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Slemani-Awbara", "bloodGroup": "B+", "phone": "0772 152 1251", "email": "aryamohammedali@gmail.com", "nationalId": "200629808047", "picture": "https://drive.google.com/open?id=1aJw1AB2VFUG61hpvHFIsxfIU1u8xIx9U", "status": "Accepted"}, {"code": "6", "username": "Helen Hiwa Jamal", "usernameKey": "helen hiwa jamal", "password": "01082003", "fullName": "Helen Hiwa Jamal", "studyCondition": "Pre-Graduate", "university": "Qaiwan International University", "college": "College of Dentistry", "birthDateDisplay": "01/08/2003", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Hawari Taza", "bloodGroup": "O+", "phone": "07718200303", "email": "Hellacobra@gmail.com", "nationalId": "2003501", "picture": "https://drive.google.com/open?id=1f4TN0WXjEF0IwwAy_6EK7YuDs01bWTb8", "status": "Accepted"}, {"code": "7", "username": "Dastan Soran Saeed", "usernameKey": "dastan soran saeed", "password": "14072006", "fullName": "Dastan Soran Saeed", "studyCondition": "Pre-Graduate", "university": "Qaiwan International University", "college": "College of Dentistry", "birthDateDisplay": "14/07/2006", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Hawari shar", "bloodGroup": "B+", "phone": "07701621568", "email": "dsqiu240168@uniq.edu.iq", "nationalId": "200676184873", "picture": "https://drive.google.com/open?id=1CG_wBuKd6rK9RwSHTbbiBo83LaCUHvv8", "status": "Accepted"}, {"code": "8", "username": "Barin jalal muhammad", "usernameKey": "barin jalal muhammad", "password": "08012006", "fullName": "Barin jalal muhammad", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "08/01/2006", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Kaziwa street near harem hospital", "bloodGroup": "O+", "phone": "07700443348", "email": "barin.jalal11@gmail.com", "nationalId": "200606956207", "picture": "https://drive.google.com/open?id=1za5KDldyAMdSEVd6GOufgo6CahiOoWVk", "status": "Accepted"}, {"code": "9", "username": "Kodyar Dlawar Mohummad", "usernameKey": "kodyar dlawar mohummad", "password": "04042004", "fullName": "Kodyar Dlawar Mohummad", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "04/04/2004", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Rapareen", "bloodGroup": "A+", "phone": "07709568498", "email": "q4e68vg5@gmail.com", "nationalId": "200413868695", "picture": "https://drive.google.com/open?id=1h6KEPMVmfPWfNxDQnRUUQasHPmVlwhhV", "status": "Accepted"}, {"code": "10", "username": "Shanya Ahmed Hama", "usernameKey": "shanya ahmed hama", "password": "25072004", "fullName": "Shanya Ahmed Hama", "studyCondition": "Pre-Graduate", "university": "Komar University of Science and Technology", "college": "College of Dentistry", "birthDateDisplay": "25/07/2004", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Ali kamal", "bloodGroup": "O+", "phone": "07700501212", "email": "Aahmadshanya500@gmail.com", "nationalId": "6669865", "picture": "https://drive.google.com/open?id=1zQeZ03ssuxwhuNxWzc1iZ1R1zPdDgd2B", "status": "Accepted"}, {"code": "11", "username": "Mastan ramadhan hama amin", "usernameKey": "mastan ramadhan hama amin", "password": "23032006", "fullName": "Mastan ramadhan hama amin", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "23/03/2006", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Slemani/ twymalik", "bloodGroup": "AB+", "phone": "07701353485", "email": "Mastan.ramazan06@gmail.com", "nationalId": "200695415055", "picture": "https://drive.google.com/open?id=13fsq6JLLteske-R1klruM3SrunRhcMWw", "status": "Accepted"}, {"code": "12", "username": "Savian sasan sirwan", "usernameKey": "savian sasan sirwan", "password": "15112006", "fullName": "Savian sasan sirwan", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "15/11/2006", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Baranan", "bloodGroup": "O+", "phone": "0774 153 2006", "email": "Savian.sasan@gmail.com", "nationalId": "+964", "picture": "https://drive.google.com/open?id=1cKX0xj8VJ2nSnXg2eK4PXJGxX2k3jrXR", "status": "Accepted"}, {"code": "13", "username": "Peshawa Dlshad Muhamad", "usernameKey": "peshawa dlshad muhamad", "password": "14052004", "fullName": "Peshawa Dlshad Muhamad", "studyCondition": "Pre-Graduate", "university": "Komar University of Science and Technology", "college": "College of Dentistry", "birthDateDisplay": "14/05/2004", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Sulaymaniyah (Dorm at komar university)", "bloodGroup": "B+", "phone": "07700892004", "email": "F220712@komar.edu.iq", "nationalId": "00768613", "picture": "https://drive.google.com/open?id=1Aee7RqKN4E_GFC5KQz-uXicR5NcwbH2k", "status": "Accepted"}, {"code": "14", "username": "Ahmed Muhammed Ali", "usernameKey": "ahmed muhammed ali", "password": "26022005", "fullName": "Ahmed Muhammed Ali", "studyCondition": "Pre-Graduate", "university": "Qaiwan International University", "college": "College of Dentistry", "birthDateDisplay": "26/02/2005", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Green City", "bloodGroup": "A+", "phone": "0770 199 1898", "email": "ahmaddembele8@gmail.com", "nationalId": "AZ6903272", "picture": "https://drive.google.com/open?id=1SlblKkjU9xyDxOJnmhgtT1sl_jQHmluJ", "status": "Accepted"}, {"code": "15", "username": "Ari Aso  Abdulghafoor", "usernameKey": "ari aso abdulghafoor", "password": "08122005", "fullName": "Ari Aso  Abdulghafoor", "studyCondition": "Pre-Graduate", "university": "Qaiwan International University", "college": "College of Dentistry", "birthDateDisplay": "08/12/2005", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Near anwar shexa hospital", "bloodGroup": "A+", "phone": "07708120808", "email": "aaqiu230067@uniq.edu.iq", "nationalId": "200511377818", "picture": "https://drive.google.com/open?id=1orkuwx4hGk79IFvwSPrJQ5Ucj4HOt8Rt", "status": "Accepted"}, {"code": "16", "username": "Lano Daban Abdalkarim", "usernameKey": "lano daban abdalkarim", "password": "08082006", "fullName": "Lano Daban Abdalkarim", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "08/08/2006", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Darwaza city", "bloodGroup": "O+", "phone": "07709959045", "email": "lanodaban1978@gmail.com", "nationalId": "200679007852", "picture": "https://drive.google.com/open?id=1nagBl3HQBdptZXpbhl9maDg_OYjV271w", "status": "Accepted"}, {"code": "18", "username": "Lara Abdulaziz Mohammed", "usernameKey": "lara abdulaziz mohammed", "password": "26032005", "fullName": "Lara Abdulaziz Mohammed", "studyCondition": "Pre-Graduate", "university": "Duhok University", "college": "College of Dentistry", "birthDateDisplay": "26/03/2005", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Sarchnar", "bloodGroup": "B+", "phone": "07744569213", "email": "Lara_abdul@yahoo.com", "nationalId": "2005331153451", "picture": "", "status": "Accepted"}, {"code": "19", "username": "Elian Ako Omer", "usernameKey": "elian ako omer", "password": "16022005", "fullName": "Elian Ako Omer", "studyCondition": "Pre-Graduate", "university": "Qaiwan International University", "college": "College of Dentistry", "birthDateDisplay": "16/02/2005", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Dania City", "bloodGroup": "B+", "phone": "07701909314", "email": "eako01121@gmail.com", "nationalId": "200521628566", "picture": "", "status": "Accepted"}, {"code": "20", "username": "Koraz kawa latif", "usernameKey": "koraz kawa latif", "password": "26122003", "fullName": "Koraz kawa latif", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "26/12/2003", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Zargata", "bloodGroup": "A-", "phone": "07702210307", "email": "Korazkawa@yahoo.com", "nationalId": ".", "picture": "", "status": "Accepted"}, {"code": "22", "username": "Saya Salah İbrahim", "usernameKey": "saya salah ibrahim", "password": "01052006", "fullName": "Saya Salah İbrahim", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "01/05/2006", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "New bakrajo", "bloodGroup": "A+", "phone": "07721524281", "email": "sayasalah128@gmail.com", "nationalId": "200617137053", "picture": "https://drive.google.com/open?id=1OSTedjHbW6BCz2hzXbcHCGDI2gaQshJ5", "status": "Accepted"}, {"code": "23", "username": "Lara haider sattar jabbar", "usernameKey": "lara haider sattar jabbar", "password": "22102006", "fullName": "Lara haider sattar jabbar", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "22/10/2006", "sex": "Female", "nationality": "I have a mixed nationality,my father is arabic my mom is kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Sulaimani", "bloodGroup": "A+", "phone": "07704523815", "email": "bdnsbdns777@gmail.com", "nationalId": "200644817147", "picture": "https://drive.google.com/open?id=1hgkhjHsSNWNYi_S2B9fOKwZsWCmh2sSk", "status": "Accepted"}, {"code": "24", "username": "Shan Ali Othman", "usernameKey": "shan ali othman", "password": "05022006", "fullName": "Shan Ali Othman", "studyCondition": "Pre-Graduate", "university": "Qaiwan International University", "college": "College of Dentistry", "birthDateDisplay": "05/02/2006", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Hawara barzah", "bloodGroup": "A+", "phone": "0774 820 1136", "email": "shan.ali.sr4@gmail.com", "nationalId": "200641619479", "picture": "https://drive.google.com/open?id=18VHL6v5UmSExRev4i2zy0f18LKelhOaH", "status": "Accepted"}, {"code": "25", "username": "Shokh Ali Othman", "usernameKey": "shokh ali othman", "password": "16042005", "fullName": "Shokh Ali Othman", "studyCondition": "Pre-Graduate", "university": "Qaiwan International University", "college": "College of Dentistry", "birthDateDisplay": "16/04/2005", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Hawara barza", "bloodGroup": "A+", "phone": "07748201135", "email": "Shox.shox.ss918@gmail.com", "nationalId": "2005856277000", "picture": "https://drive.google.com/open?id=1i63rJjjrZ8TZJK1W1GKXXyQicN6Q-bm2", "status": "Accepted"}, {"code": "27", "username": "Bilal Nawzad Muhamad", "usernameKey": "bilal nawzad muhamad", "password": "23052004", "fullName": "Bilal Nawzad Muhamad", "studyCondition": "Pre-Graduate", "university": "Duhok University", "college": "College of Dentistry", "birthDateDisplay": "23/05/2004", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Hawary shar / slemany", "bloodGroup": "A+", "phone": "07759778151", "email": "belalnawzad289@gmail.com", "nationalId": "200412194300", "picture": "https://drive.google.com/open?id=1yNE1eNYs-CiEVXSGGq4vkr3BqTHw-0sS", "status": "Accepted"}, {"code": "28", "username": "soz dlshad", "usernameKey": "soz dlshad", "password": "27072004", "fullName": "soz dlshad", "studyCondition": "Pre-Graduate", "university": "Komar University of Science and Technology", "college": "College of Dentistry", "birthDateDisplay": "27/07/2004", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "sulaimanyah", "bloodGroup": "O+", "phone": "07730454410", "email": "sozadlshad2004@gmail.com", "nationalId": "200493738796", "picture": "", "status": "Accepted"}, {"code": "29", "username": "Zhilya Kamal Qadir", "usernameKey": "zhilya kamal qadir", "password": "24092003", "fullName": "Zhilya Kamal Qadir", "studyCondition": "Pre-Graduate", "university": "Komar University of Science and Technology", "college": "College of Dentistry", "birthDateDisplay": "24/09/2003", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Qularaisy", "bloodGroup": "B+", "phone": "07748146472", "email": "Zhilyakemal@gmail.com", "nationalId": "200369246380", "picture": "", "status": "Accepted"}, {"code": "30", "username": "Elyan Sherko Mahmood", "usernameKey": "elyan sherko mahmood", "password": "30072005", "fullName": "Elyan Sherko Mahmood", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "30/07/2005", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Garaki zanko - raparin", "bloodGroup": "O+", "phone": "07708560707", "email": "elyansherko05@gmail.com", "nationalId": "200513522557", "picture": "https://drive.google.com/open?id=1vxa3TTQ-Cw2ADsIVCIEe44w5UQSRY3MA", "status": "Accepted"}, {"code": "32", "username": "Shahad Aras Fouad", "usernameKey": "shahad aras fouad", "password": "06012002", "fullName": "Shahad Aras Fouad", "studyCondition": "Pre-Graduate", "university": "Komar University of Science and Technology", "college": "College of Dentistry", "birthDateDisplay": "06/01/2002", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Nali city", "bloodGroup": "A+", "phone": "07700200727", "email": "f230514@komar.edu.iq", "nationalId": "200263069063", "picture": "https://drive.google.com/open?id=1NVf2UldWfPwKZWAxzkghwTB-62GR7rlC", "status": "Accepted"}, {"code": "33", "username": "Qashang Nawzad Mohammed", "usernameKey": "qashang nawzad mohammed", "password": "16012005", "fullName": "Qashang Nawzad Mohammed", "studyCondition": "Pre-Graduate", "university": "Komar University of Science and Technology", "college": "College of Dentistry", "birthDateDisplay": "16/01/2005", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Komar University Dorms", "bloodGroup": "A+", "phone": "07728532419", "email": "F220190@komar.edu.iq", "nationalId": "200524396475", "picture": "https://drive.google.com/open?id=1VcRmWvlzJCNd13oMvZhA9-T_moDo_ZoE", "status": "Accepted"}, {"code": "34", "username": "Linda Khalid Kareem", "usernameKey": "linda khalid kareem", "password": "12062006", "fullName": "Linda Khalid Kareem", "studyCondition": "Pre-Graduate", "university": "Komar University of Science and Technology", "college": "College of Dentistry", "birthDateDisplay": "12/06/2006", "sex": "Female", "nationality": "Arabic", "religion": "Muslim", "city": "Sulaymaniah", "address": "Sulaymaniyah", "bloodGroup": "O+", "phone": "07864022015", "email": "lindaxalid12@gmail.com", "nationalId": "200670739936", "picture": "", "status": "Accepted"}, {"code": "35", "username": "Noor abduljabbar abdulrahman", "usernameKey": "noor abduljabbar abdulrahman", "password": "20042006", "fullName": "Noor abduljabbar abdulrahman", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "20/04/2006", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Baxtyari", "bloodGroup": "A+", "phone": "07702580638", "email": "noorjmorr@gmail.com", "nationalId": "200674523423", "picture": "", "status": "Accepted"}, {"code": "36", "username": "Lazya Mazn Khalil", "usernameKey": "lazya mazn khalil", "password": "19012007", "fullName": "Lazya Mazn Khalil", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "19/01/2007", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Tavga/slemani", "bloodGroup": "O+", "phone": "07701443888", "email": "Lazalaza.2021@gmail.com", "nationalId": "200722735184", "picture": "https://drive.google.com/open?id=12_ANQSfQ_fDtqKJ6QiB_5HK6DOINz0to", "status": "Accepted"}, {"code": "39", "username": "Awan kamaran jalal", "usernameKey": "awan kamaran jalal", "password": "25042005", "fullName": "Awan kamaran jalal", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "25/04/2005", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Ebrahim ahmed", "bloodGroup": "O+", "phone": "0776 696 6461", "email": "awan.253697@stu.univsul.edu.iq", "nationalId": "6050425566196", "picture": "https://drive.google.com/open?id=1xphwVkzu6Jnb8maqkAfD5zTf4jXeI6v8", "status": "Accepted"}, {"code": "40", "username": "Larin abdalstar abubakir xdir", "usernameKey": "larin abdalstar abubakir xdir", "password": "14092006", "fullName": "Larin abdalstar abubakir xdir", "studyCondition": "Post-Graduate(Bachelor)", "university": "Tishk international University", "college": "College of Dentistry", "birthDateDisplay": "14/09/2006", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Bakrajoy taza", "bloodGroup": "B+", "phone": "07501542565", "email": "Larinstar14@gmail .com", "nationalId": "2", "picture": "https://drive.google.com/open?id=1hBeAu9yBjLw1cnbs-fmRkx5XFZAjdwv9", "status": "Accepted"}, {"code": "41", "username": "Zhya Omar Hama Ghalib", "usernameKey": "zhya omar hama ghalib", "password": "01102005", "fullName": "Zhya Omar Hama Ghalib", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "01/10/2005", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Garden City", "bloodGroup": "O-", "phone": "07702851122", "email": "zhiaomar266@gmail.com", "nationalId": "200571954159", "picture": "", "status": "Accepted"}, {"code": "42", "username": "Lava Raswl Mhammad", "usernameKey": "lava raswl mhammad", "password": "30032005", "fullName": "Lava Raswl Mhammad", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "30/03/2005", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Darbandikhan", "bloodGroup": "O-", "phone": "0775 977 5826", "email": "Lavarasull777@gmail.com", "nationalId": "200536037262", "picture": "", "status": "Accepted"}, {"code": "45", "username": "shkar sdiq Abdullah", "usernameKey": "shkar sdiq abdullah", "password": "10022006", "fullName": "shkar sdiq Abdullah", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "10/02/2006", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "hawari shar", "bloodGroup": "AB+", "phone": "07747939020", "email": "shkarsdiq666@gmail.com", "nationalId": "200695711431", "picture": "https://drive.google.com/open?id=1By7fFwX2liRFpxFlIaUOvpkxh61E0zJ9", "status": "Accepted"}, {"code": "46", "username": "Alaa Sabah Sharif", "usernameKey": "alaa sabah sharif", "password": "22022006", "fullName": "Alaa Sabah Sharif", "studyCondition": "Pre-Graduate", "university": "Qaiwan International University", "college": "College of Dentistry", "birthDateDisplay": "22/02/2006", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Slemani- chwar chra", "bloodGroup": "O-", "phone": "07705191758", "email": "Alaa0sabah@gmail.com", "nationalId": "200640021534", "picture": "https://drive.google.com/open?id=1-6BbezEwSgSTOEOmN-ubcA6JQwZWPE6P", "status": "Accepted"}, {"code": "48", "username": "Dali Zana Omer", "usernameKey": "dali zana omer", "password": "01012006", "fullName": "Dali Zana Omer", "studyCondition": "Pre-Graduate", "university": "Qaiwan International University", "college": "College of Dentistry", "birthDateDisplay": "01/01/2006", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Kurdsat", "bloodGroup": "A+", "phone": "07721450005", "email": "Dalyzanaa@gmail.com", "nationalId": "200616152073", "picture": "https://drive.google.com/open?id=11q0Ooj7_CyWXOBNcU3TxiTn89p-snFOh", "status": "Accepted"}, {"code": "49", "username": "Nma Nawroz Abid", "usernameKey": "nma nawroz abid", "password": "01012006", "fullName": "Nma Nawroz Abid", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "01/01/2006", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Nawandi shari slemani", "bloodGroup": "B+", "phone": "07717097986", "email": "nmanawroz3@gmail.com", "nationalId": "200685438428", "picture": "https://drive.google.com/open?id=1wTlJSdpqHjJrrfq6MkqRZ_08-4jMcG6c", "status": "Accepted"}, {"code": "51", "username": "Sarya Abubakr Rahim", "usernameKey": "sarya abubakr rahim", "password": "23052006", "fullName": "Sarya Abubakr Rahim", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "23/05/2006", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Slemani", "bloodGroup": "B+", "phone": "07511510025", "email": "saryaabubakr22@gmail.com", "nationalId": "200644298179", "picture": "https://drive.google.com/open?id=1YMvQwHYVXix0DkqLQFqSSgiYxQkiS8n6", "status": "Accepted"}, {"code": "52", "username": "Kazya nawroz fazil", "usernameKey": "kazya nawroz fazil", "password": "24052006", "fullName": "Kazya nawroz fazil", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "24/05/2006", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Raparin", "bloodGroup": "B+", "phone": "07770075724", "email": "Kazyanawroz2566@gmail.com", "nationalId": "200696163360", "picture": "https://drive.google.com/open?id=1olKl5t_tQVbZc20v91CPJTy3Xrv6Vund", "status": "Accepted"}, {"code": "53", "username": "Raz taha hamaamin", "usernameKey": "raz taha hamaamin", "password": "08012005", "fullName": "Raz taha hamaamin", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "08/01/2005", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Sarchnar-slemani", "bloodGroup": "O+", "phone": "07701362067", "email": "taharaz957@gamil.com", "nationalId": "200560093597", "picture": "https://drive.google.com/open?id=1I2S4nGVQ56uGFzbB-kJxgNvUssO8nBbi", "status": "Accepted"}, {"code": "54", "username": "Anas Tariq Jabar", "usernameKey": "anas tariq jabar", "password": "02072006", "fullName": "Anas Tariq Jabar", "studyCondition": "Pre-Graduate", "university": "Tishk international University", "college": "College of Dentistry", "birthDateDisplay": "02/07/2006", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Kani Ba", "bloodGroup": "A+", "phone": "0770 743 4304", "email": "anastariq2706@gmail.com", "nationalId": "200661164871", "picture": "https://drive.google.com/open?id=1P9dZyE4p_vl-0jlrsk6jCqeiEZM6R-1B", "status": "Accepted"}, {"code": "56", "username": "Saya Jamal Ali", "usernameKey": "saya jamal ali", "password": "13042004", "fullName": "Saya Jamal Ali", "studyCondition": "Pre-Graduate", "university": "Qaiwan International University", "college": "College of Dentistry", "birthDateDisplay": "13/04/2004", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "zargatai taza", "bloodGroup": "O+", "phone": "07741546661", "email": "sayajamalali@gmail.com", "nationalId": "200440023338", "picture": "https://drive.google.com/open?id=16NY6rgss6D2lID8aKmISLD16VQw_pXD7", "status": "Accepted"}, {"code": "57", "username": "Mohammed Abubakr Raouf", "usernameKey": "mohammed abubakr raouf", "password": "05072006", "fullName": "Mohammed Abubakr Raouf", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "05/07/2006", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Kurdsat, Sulaymanyiah", "bloodGroup": "B+", "phone": "07748005145", "email": "```@gmail.com", "nationalId": "200607621742", "picture": "https://drive.google.com/open?id=1EsL8i04l1I5zMda0tI40PfZvXJmqHW9m", "status": "Accepted"}, {"code": "58", "username": "Aro chya Fatah", "usernameKey": "aro chya fatah", "password": "10072005", "fullName": "Aro chya Fatah", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "10/07/2005", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "White city", "bloodGroup": "B+", "phone": "07709701511", "email": "Arochia970@gmail.com", "nationalId": "200586061459", "picture": "https://drive.google.com/open?id=19n_P6fXQ_EYbIbzV7ydvLSjDtBAy4JNp", "status": "Accepted"}, {"code": "59", "username": "Shnyar salah", "usernameKey": "shnyar salah", "password": "08032006", "fullName": "Shnyar salah", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "08/03/2006", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Raparin", "bloodGroup": "AB+", "phone": "07728127272", "email": "Shnyarsalah14@gmail.com", "nationalId": "200689819671", "picture": "", "status": "Accepted"}, {"code": "60", "username": "SARINA TAHA RAOUF AHMED", "usernameKey": "sarina taha raouf ahmed", "password": "15032006", "fullName": "SARINA TAHA RAOUF AHMED", "studyCondition": "Pre-Graduate", "university": "Tishk international University", "college": "College of Dentistry", "birthDateDisplay": "15/03/2006", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Majid bag", "bloodGroup": "AB+", "phone": "0772 749 8575", "email": "saraisesaraise@gmail.com", "nationalId": "200675957023", "picture": "https://drive.google.com/open?id=1pdr1q64YVpqj7qybxI5S1OVGm-Wg25pO", "status": "Accepted"}, {"code": "61", "username": "Lawin Awat Hama Shareef", "usernameKey": "lawin awat hama shareef", "password": "18122007", "fullName": "Lawin Awat Hama Shareef", "studyCondition": "Pre-Graduate", "university": "Tishk international University", "college": "College of Dentistry", "birthDateDisplay": "18/12/2007", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Sarchinar", "bloodGroup": "B+", "phone": "0750 114 7835", "email": "awatlawin10@gmail.com", "nationalId": "200757205764", "picture": "https://drive.google.com/open?id=1FfkXEyyV6YOhIY6kCnQ7yr0_CC7Mkn9D", "status": "Accepted"}, {"code": "62", "username": "Lewin Ramadhan Khalid", "usernameKey": "lewin ramadhan khalid", "password": "04112007", "fullName": "Lewin Ramadhan Khalid", "studyCondition": "Pre-Graduate", "university": "Tishk international University", "college": "College of Dentistry", "birthDateDisplay": "04/11/2007", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Mayorca city", "bloodGroup": "A+", "phone": "07729122626", "email": "Lewinhemn9@gmail.com", "nationalId": "200742414371", "picture": "https://drive.google.com/open?id=1DTMwQyLPR1ks0rfRGeNebrSzhu6O6Weg", "status": "Accepted"}, {"code": "63", "username": "KANI SHERZAD AHMED", "usernameKey": "kani sherzad ahmed", "password": "20072006", "fullName": "KANI SHERZAD AHMED", "studyCondition": "Pre-Graduate", "university": "Tishk international University", "college": "College of Dentistry", "birthDateDisplay": "20/07/2006", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Bakrajoy taza", "bloodGroup": "O+", "phone": "07762572006", "email": "K4nullee.0@gmail.com", "nationalId": "200643287847", "picture": "", "status": "Accepted"}, {"code": "64", "username": "Lawko hassan mahmood", "usernameKey": "lawko hassan mahmood", "password": "27062007", "fullName": "Lawko hassan mahmood", "studyCondition": "Pre-Graduate", "university": "Tishk international University", "college": "College of Dentistry", "birthDateDisplay": "27/06/2007", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Kaziwa", "bloodGroup": "AB+", "phone": "07703252625", "email": "Lawko.hasan123@gmail.com", "nationalId": "200718376793", "picture": "https://drive.google.com/open?id=1-duWKAGy7XdZbajko_DTeBniFEbDaPzS", "status": "Accepted"}, {"code": "65", "username": "sanar kamaran ali mohammed", "usernameKey": "sanar kamaran ali mohammed", "password": "31082006", "fullName": "sanar kamaran ali mohammed", "studyCondition": "Pre-Graduate", "university": "Tishk international University", "college": "College of Dentistry", "birthDateDisplay": "31/08/2006", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Branan", "bloodGroup": "A+", "phone": "0770 930 7070", "email": "Sanar.kamaran98@gmail.com", "nationalId": "200658156397", "picture": "https://drive.google.com/open?id=1ALK3W2rs2Xps5VcyBI9MKs7RwiSYiJfP", "status": "Accepted"}, {"code": "66", "username": "Miran Hazhar Ahmed", "usernameKey": "miran hazhar ahmed", "password": "17092005", "fullName": "Miran Hazhar Ahmed", "studyCondition": "Pre-Graduate", "university": "American universities in iraq", "college": "College of Dentistry", "birthDateDisplay": "17/09/2005", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Bakrajo", "bloodGroup": "O+", "phone": "+9647709658353", "email": "mh24080@auis.edu.krd", "nationalId": "200510521824", "picture": "https://drive.google.com/open?id=1OPNd_ymIl2Yx-bI7gGcvhRk45Q1xICxS", "status": "Accepted"}, {"code": "68", "username": "Aland kamaran ahmed esmail", "usernameKey": "aland kamaran ahmed esmail", "password": "06022004", "fullName": "Aland kamaran ahmed esmail", "studyCondition": "Pre-Graduate", "university": "Duhok University", "college": "College of Dentistry", "birthDateDisplay": "06/02/2004", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Slemani ( kani kurda )", "bloodGroup": "A+", "phone": "07730559321", "email": "alandkamaran736@gmail.com", "nationalId": "07730559321", "picture": "https://drive.google.com/open?id=1vVr9nEd_zLWSMrSqzDyo1sbxQKUvXK1A", "status": "Accepted"}, {"code": "69", "username": "Arina Yaseen Mohammed Ibrahim", "usernameKey": "arina yaseen mohammed ibrahim", "password": "12032006", "fullName": "Arina Yaseen Mohammed Ibrahim", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "12/03/2006", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Barzayakani slemani", "bloodGroup": "O+", "phone": "0770 145 5703", "email": "arinayasin74@gmail.com", "nationalId": "200650034592", "picture": "https://drive.google.com/open?id=1maPwsCn-YA1Slhd4ao_RjZcrz4W6UC3g", "status": "Accepted"}, {"code": "70", "username": "Esraa adnan anwar", "usernameKey": "esraa adnan anwar", "password": "25022007", "fullName": "Esraa adnan anwar", "studyCondition": "Pre-Graduate", "university": "Qaiwan International University", "college": "College of Dentistry", "birthDateDisplay": "25/02/2007", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "شوقەکانی زێرینۆک", "bloodGroup": "AB+", "phone": "07740819952", "email": "esraadnanf@gmail.com", "nationalId": "200774864046", "picture": "https://drive.google.com/open?id=1S4v6cYsDHQ6X0BDTky6ZAOoRpZTdRn-D", "status": "Accepted"}, {"code": "71", "username": "Khuncha hoshman ahmed", "usernameKey": "khuncha hoshman ahmed", "password": "05082007", "fullName": "Khuncha hoshman ahmed", "studyCondition": "Pre-Graduate", "university": "Tishk international University", "college": "College of Dentistry", "birthDateDisplay": "05/08/2007", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Kurdsat", "bloodGroup": "O+", "phone": "0772 508 5858", "email": "xunchahoshman5@gmail.com", "nationalId": "200703485538", "picture": "https://drive.google.com/open?id=1ec9rp_B9N92uG0oR_e3q7J7I3Z6TczPx", "status": "Accepted"}, {"code": "72", "username": "Shko dlawar smko ahmad", "usernameKey": "shko dlawar smko ahmad", "password": "12102005", "fullName": "Shko dlawar smko ahmad", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "12/10/2005", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Qrga", "bloodGroup": "B+", "phone": "07706847474", "email": "shkodlawar34@gmail.com", "nationalId": "200560740115", "picture": "https://drive.google.com/open?id=1p6Id7h4GQH-IKoSYGydHEX__yK0s9H3J", "status": "Accepted"}, {"code": "73", "username": "Saya star hama sharif", "usernameKey": "saya star hama sharif", "password": "26112007", "fullName": "Saya star hama sharif", "studyCondition": "Pre-Graduate", "university": "Tishk international University", "college": "College of Dentistry", "birthDateDisplay": "26/11/2007", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Baranan", "bloodGroup": "B+", "phone": "07707774307", "email": "sayastarhamasharif257@gmail.com", "nationalId": "200788159418", "picture": "https://drive.google.com/open?id=1ODHUTdj3Qni0Y48tm52MWrY2XPc908E7", "status": "Accepted"}, {"code": "74", "username": "Mohammed Muhsin Abubakr", "usernameKey": "mohammed muhsin abubakr", "password": "20052007", "fullName": "Mohammed Muhsin Abubakr", "studyCondition": "Pre-Graduate", "university": "Tishk international University", "college": "College of Dentistry", "birthDateDisplay": "20/05/2007", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Kurdsat", "bloodGroup": "B+", "phone": "07703176969", "email": "hamamuhsinabuamin@gmail.com", "nationalId": "200778063587", "picture": "https://drive.google.com/open?id=1GcfHCh0ryzatdV2suvNh55fYXG42A2vz", "status": "Accepted"}, {"code": "75", "username": "Shko Shirwan Muhammad Ali", "usernameKey": "shko shirwan muhammad ali", "password": "20022007", "fullName": "Shko Shirwan Muhammad Ali", "studyCondition": "Pre-Graduate", "university": "Tishk international University", "college": "College of Dentistry", "birthDateDisplay": "20/02/2007", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Chiya Street", "bloodGroup": "O+", "phone": "07765125612", "email": "shkosherwan911@gmail.com", "nationalId": "200742364497", "picture": "https://drive.google.com/open?id=1NhqgeqgrJI_wOPaiJfQBAL_C48YvhH7R", "status": "Accepted"}, {"code": "76", "username": "shko xasraw mustafa", "usernameKey": "shko xasraw mustafa", "password": "27082006", "fullName": "shko xasraw mustafa", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "27/08/2006", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Kurdsat", "bloodGroup": "AB+", "phone": "0770 222 4904", "email": "yshu494@gmail.com", "nationalId": "200611934800", "picture": "https://drive.google.com/open?id=1fT5ma-odymTShyXN9fw_oUPqN7VpjN1E", "status": "Accepted"}, {"code": "77", "username": "Lane Kaiwan Othman", "usernameKey": "lane kaiwan othman", "password": "30032007", "fullName": "Lane Kaiwan Othman", "studyCondition": "Pre-Graduate", "university": "University of Sulaymaiah", "college": "College of Dentistry", "birthDateDisplay": "30/03/2007", "sex": "Female", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Raparin", "bloodGroup": "A+", "phone": "0776 685 9188", "email": "llannee2277@gmail.com", "nationalId": "200798578401", "picture": "https://drive.google.com/open?id=1JdjF7ogiHPwosKDRqueXmLl8WZ5vnssK", "status": "Accepted"}, {"code": "78", "username": "Shad Hakim Aziz Ibrahim", "usernameKey": "shad hakim aziz ibrahim", "password": "26092007", "fullName": "Shad Hakim Aziz Ibrahim", "studyCondition": "Pre-Graduate", "university": "Tishk international University", "college": "College of Dentistry", "birthDateDisplay": "26/09/2007", "sex": "Male", "nationality": "Kurdish", "religion": "Muslim", "city": "Sulaymaniah", "address": "Chwar Chra near Sulaymani polytechnic university", "bloodGroup": "AB+", "phone": "0772 717 5253", "email": "Shadhakim101@gmail.com", "nationalId": "کارتی نیشتیمانی", "picture": "https://drive.google.com/open?id=1DafGJHCvEFrCQIUY7a6nBhJ-_GaNNyut", "status": "Accepted"}];
+
+    const loginForm = document.getElementById('loginForm');
+    const loginStatus = document.getElementById('loginStatus');
+    const memberProfile = document.getElementById('memberProfile');
+    const memberGrid = document.getElementById('memberGrid');
+
+    function normalizeName(value) {
+      return String(value || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[\u0130\u0131]/g, 'i')
+        .trim()
+        .replace(/\s+/g, ' ')
+        .toLowerCase();
+    }
+
+    function showStatus(message, type) {
+      loginStatus.textContent = message;
+      loginStatus.className = 'status-message ' + (type === 'success' ? 'status-success' : 'status-error');
+    }
+
+    function hideStatus() {
+      loginStatus.textContent = '';
+      loginStatus.className = 'status-message';
+    }
+
+    function renderMember(member) {
+      const fields = [
+        ['Full Name', member.fullName],
+        ['Organizational Code', member.code],
+        ['Status', member.status],
+        ['Study Condition', member.studyCondition],
+        ['University', member.university],
+        ['College', member.college],
+        ['Birth Date', member.birthDateDisplay],
+        ['Sex', member.sex],
+        ['Nationality', member.nationality],
+        ['Religion', member.religion],
+        ['City', member.city],
+        ['Address', member.address],
+        ['Blood Group', member.bloodGroup],
+        ['Phone / WhatsApp', member.phone],
+        ['Email', member.email],
+        ['National ID', member.nationalId]
+      ];
+
+      memberGrid.innerHTML = fields.map(([label, value]) => `
+        <div class="member-item">
+          <span>${label}</span>
+          <div>${value || '-'}</div>
+        </div>
+      `).join('');
+
+      memberProfile.classList.add('active');
+    }
+
+    loginForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      hideStatus();
+      memberProfile.classList.remove('active');
+      memberGrid.innerHTML = '';
+
+      const code = document.getElementById('orgCode').value.trim();
+      const username = normalizeName(document.getElementById('userName').value);
+      const password = document.getElementById('password').value.trim();
+
+      const member = acceptedMembers.find(item =>
+        item.code === code &&
+        item.usernameKey === username &&
+        item.password === password
+      );
+
+      if (!member) {
+        showStatus('Login failed. Please check the organizational code, user name, and birthday password. Only accepted members can log in.', 'error');
+        return;
+      }
+
+      showStatus('Login successful. Member data loaded.', 'success');
+      renderMember(member);
+    });
+  </script>
+
+</body>
+</html>
